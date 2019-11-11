@@ -4,9 +4,15 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `enqueue`?
 
+`O(1)` because you are simply changing two pointers, no matter what.
+
 2. What is the runtime complexity of `dequeue`?
 
+Also `O(1)` because you're still just changing a couple pointers.
+
 3. What is the runtime complexity of `len`?
+
+`O(1)` yet again, because it's simply returning a stored value.
 
 ## Binary Search Tree
 
