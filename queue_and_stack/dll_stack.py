@@ -12,7 +12,8 @@ class Stack:
         self.storage.add_to_tail(value)
 
     def pop(self):
-        return self.storage.remove_from_tail()
+        if self.len() > 0:
+            return self.storage.remove_from_tail()
 
     def len(self):
         return self.storage.length
