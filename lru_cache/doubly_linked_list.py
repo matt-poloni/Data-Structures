@@ -49,25 +49,67 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value, None, None)
+        self.length += 1
+        if not self.head and not self.tail:
+            self.tail = new_node
+        else:
+            self.head.prev = new_node
+            new_node.next = self.head
+        self.head = new_node
 
     def remove_from_head(self):
-        pass
+        if self.head is not None:
+            value = self.head.value
+            self.delete(self.head)
+            return value
 
     def add_to_tail(self, value):
-        pass
+        new_node = ListNode(value, None, None)
+        self.length += 1
+        if not self.head and not self.tail:
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+        self.tail = new_node
 
     def remove_from_tail(self):
-        pass
+        if self.tail is not None:
+            value = self.tail.value
+            self.delete(self.tail)
+            return value
 
     def move_to_front(self, node):
-        pass
+        if node is not self.head:
+            value = node.value
+            self.delete(node)
+            self.add_to_head(value)
 
     def move_to_end(self, node):
-        pass
+        print(node is self.head, node.value, self.head.value)
+        if node is not self.tail:
+            value = node.value
+            self.delete(node)
+            self.add_to_tail(value)
 
     def delete(self, node):
-        pass
+        self.length -= 1
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+            return
+        elif self.head is node:
+            self.head = node.next
+        elif self.tail is node:
+            self.tail = node.prev
+        node.delete()
 
     def get_max(self):
-        pass
+        max_value = self.head.value
+        current = self.head
+        while current is not None:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.next
+        return max_value
