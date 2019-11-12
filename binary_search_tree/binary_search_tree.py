@@ -12,7 +12,14 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        cur = self
+        while (nxt := cur.left if value < cur.value else cur.right) is not None:
+            cur = nxt
+        node = BinarySearchTree(value)
+        if value < cur.value:
+            cur.left = node
+        else:
+            cur.right = node
 
     # Return True if the tree contains the value
     # False if it does not
