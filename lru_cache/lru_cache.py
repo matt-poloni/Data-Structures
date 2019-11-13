@@ -1,4 +1,4 @@
-from doubly_linked_list import DoublyLinkedList, ListNode
+from doubly_linked_list import DoublyLinkedList
 
 class LRUCache:
     """
@@ -10,8 +10,8 @@ class LRUCache:
     """
     def __init__(self, limit=10):
         self.limit = limit
-        self.list = DoublyLinkedList()
-        self.dict = {}
+        self.order = DoublyLinkedList()
+        self.storage = {}
 
     """
     Retrieves the value associated with the given key. Also
@@ -22,10 +22,10 @@ class LRUCache:
     """
     def get(self, key):
         try:
-            node = self.dict[key]
+            node = self.storage[key]
         except:
             return None
-        self.list.move_to_end(node)
+        self.order.move_to_end(node)
         return node.value[1]
 
     """
@@ -40,12 +40,12 @@ class LRUCache:
     """
     def set(self, key, value):
         try:
-            node = self.dict[key]
+            node = self.storage[key]
             node.value = (key, value)
-            self.list.move_to_end(node)
+            self.order.move_to_end(node)
         except:
-            if self.list.length == self.limit:
-                gone = self.list.remove_from_head()[0]
-                del self.dict[gone]
-            self.list.add_to_tail((key, value))
-            self.dict[key] = self.list.tail
+            if self.order.length == self.limit:
+                gone = self.order.remove_from_head()[0]
+                del self.storage[gone]
+            self.order.add_to_tail((key, value))
+            self.storage[key] = self.order.tail
