@@ -90,8 +90,16 @@ class BinarySearchTree:
 
     # Print In-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        print(self.value)
+        if self.left is not None:
+            self.left.pre_order_dft(node)
+        if self.right is not None:
+            self.right.pre_order_dft(node)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if self.left is not None:
+            self.left.post_order_dft(node)
+        if self.right is not None:
+            self.right.post_order_dft(node)
+        print(self.value)
