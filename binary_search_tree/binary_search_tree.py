@@ -67,14 +67,14 @@ class BinarySearchTree:
         q = Queue()
         q.enqueue(node)
         while q.len() > 0:
-            tail = q.storage.tail.value
-            left = tail.left
-            right = tail.right
+            dequeued = q.dequeue()
+            print(dequeued.value)
+            left = dequeued.left
+            right = dequeued.right
             if left is not None:
                 q.enqueue(left)
             if right is not None:
                 q.enqueue(right)
-            print(q.dequeue().value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -82,10 +82,10 @@ class BinarySearchTree:
         s = Stack()
         s.push(node)
         while s.len() > 0:
-            tail = s.storage.tail.value
-            left = tail.left
-            right = tail.right
-            print(s.pop().value)
+            popped = s.pop()
+            print(popped.value)
+            left = popped.left
+            right = popped.right
             if left is not None:
                 s.push(left)
             if right is not None:
