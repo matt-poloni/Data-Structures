@@ -85,11 +85,11 @@ class BinarySearchTree:
             tail = s.storage.tail.value
             left = tail.left
             right = tail.right
+            print(s.pop().value)
             if left is not None:
                 s.push(left)
             if right is not None:
                 s.push(right)
-            print(s.pop().value)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
