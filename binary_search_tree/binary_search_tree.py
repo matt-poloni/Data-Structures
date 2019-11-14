@@ -13,10 +13,12 @@ class BinarySearchTree:
     # Insert the given value into the tree
     def insert(self, value):
         cur = self
-        while (nxt := cur.left if value < cur.value else cur.right) is not None:
+        left = value < cur.value
+        while (nxt := cur.left if left else cur.right) is not None:
             cur = nxt
+            left = value < cur.value
         node = BinarySearchTree(value)
-        if value < cur.value:
+        if left:
             cur.left = node
         else:
             cur.right = node
