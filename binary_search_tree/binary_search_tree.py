@@ -66,7 +66,7 @@ class BinarySearchTree:
     def bft_print(self, node):
         q = Queue()
         q.enqueue(node)
-        while q.len() > 0:
+        while q.size > 0:
             dequeued = q.dequeue()
             print(dequeued.value)
             left = dequeued.left
@@ -81,7 +81,7 @@ class BinarySearchTree:
     def dft_print(self, node):
         s = Stack()
         s.push(node)
-        while s.len() > 0:
+        while s.size > 0:
             popped = s.pop()
             print(popped.value)
             left = popped.left
