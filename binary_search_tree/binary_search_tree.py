@@ -13,10 +13,12 @@ class BinarySearchTree:
     # Insert the given value into the tree
     def insert(self, value):
         cur = self
-        while (nxt := cur.left if value < cur.value else cur.right) is not None:
+        left = value < cur.value
+        while (nxt := cur.left if left else cur.right) is not None:
             cur = nxt
+            left = value < cur.value
         node = BinarySearchTree(value)
-        if value < cur.value:
+        if left:
             cur.left = node
         else:
             cur.right = node
@@ -66,26 +68,26 @@ class BinarySearchTree:
     def bft_print(self, node):
         q = Queue()
         q.enqueue(node)
-        while q.len() > 0:
-            tail = q.storage.tail.value
-            left = tail.left
-            right = tail.right
+        while q.size > 0:
+            dequeued = q.dequeue()
+            print(dequeued.value)
+            left = dequeued.left
+            right = dequeued.right
             if left is not None:
                 q.enqueue(left)
             if right is not None:
                 q.enqueue(right)
-            print(q.dequeue().value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
         s = Stack()
         s.push(node)
-        while s.len() > 0:
-            tail = s.storage.tail.value
-            left = tail.left
-            right = tail.right
-            print(s.pop().value)
+        while s.size > 0:
+            popped = s.pop()
+            print(popped.value)
+            left = popped.left
+            right = popped.right
             if left is not None:
                 s.push(left)
             if right is not None:

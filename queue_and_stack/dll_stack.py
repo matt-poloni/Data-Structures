@@ -10,9 +10,11 @@ class Stack:
 
     def push(self, value):
         self.storage.add_to_tail(value)
+        self.size = self.len()
 
     def pop(self):
         if self.len() > 0:
+            self.size = self.len() - 1
             return self.storage.remove_from_tail()
 
     def len(self):
