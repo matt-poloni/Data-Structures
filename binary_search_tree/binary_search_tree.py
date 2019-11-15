@@ -12,28 +12,54 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        cur = self
+        while (nxt := cur.left if value < cur.value else cur.right) is not None:
+            cur = nxt
+        node = BinarySearchTree(value)
+        if value < cur.value:
+            cur.left = node
+        else:
+            cur.right = node
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        cur = self
+        found = cur.value == target
+        while not found:
+            nxt = cur.left if target < cur.value else cur.right
+            if nxt is None:
+                break
+            cur = nxt
+            found = cur.value == target
+        return found
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        cur = self
+        while cur.right is not None:
+            cur = cur.right
+        return cur.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.left is not None:
+            self.left.for_each(cb)
+        if self.right is not None:
+            self.right.for_each(cb)
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if self.left is not None:
+            self.left.in_order_print(node)
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print(node)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
